@@ -1,0 +1,34 @@
+name: ViceDrops6 - preparar fila Free
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'inbox/clips.csv'
+      - 'state/**'
+      - 'config/**'
+      - 'src/**'
+      - 'tests/**'
+  schedule:
+    # 12:00 UTC = 09:00 Sao Paulo (America/Sao_Paulo)
+    - cron: '0 12 * * *'
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Testar
+        run: python -m unittest discover -s tests -v
+      - name: Preparar (nao publica)
+        run: python src/prepare.py
+      - name: Salvar CSV e resumo
+        uses: actions/upload-artifact@v4
+        with:
+          name: vicedrops6-fila-para-agendar
+          path: output/
+          retention-days: 7

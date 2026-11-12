@@ -1,0 +1,6 @@
+{
+  "timezone": "America/Sao_Paulo",
+  "start_delay_days": 1,
+  "days_between_clips": 3,
+  "slots": {"tiktok": "12:30", "instagram": "17:00"}
+}

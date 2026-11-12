@@ -1,0 +1,2 @@
+# Depois de confirmar ambos os agendamentos, adicione um clip_id por linha.
+# Os IDs aqui não aparecem nos próximos arquivos de fila.
